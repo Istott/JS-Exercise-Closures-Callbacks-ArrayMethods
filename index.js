@@ -157,14 +157,18 @@ function processContains(item, list, callback) {
  * should return 3.
 */
 function processDuplicateFree(list, callback) {
-  var dedupeArr = {};
+  // let dedupeArr = {};
 
-	return list.filter(function (el) {
-		var key = JSON.stringify(el);
-		var match = Boolean(dedupeArr[key]);
+	// return list.filter(function (item) {
+	// 	let key = JSON.stringify(item);
+	// 	let match = Boolean(dedupeArr[key]);
 
-		return (match ? false : dedupeArr[key] = true);
-	});
+	// 	return (match ? false : dedupeArr[key] = true);
+  // });
+  
+  return callback(list.filter((item, index) => {
+    return !list.slice(index+1).includes(item);
+  }));
 }
 
 /////////////// HIGHER-ORDER ARRAY METHODS ///////////////
